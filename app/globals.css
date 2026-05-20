@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #0a0906;
+  --color-surface: #111009;
+  --color-card: #1a1710;
+  --color-accent-amber: #c9a84c;
+  --color-accent-rust: #8b3a2a;
+  --color-accent-sage: #3d5a47;
+  --color-text-primary: #e8e0cc;
+  --color-text-muted: #7a7060;
+  --color-border: #2a2520;
+  --color-glow: rgba(201, 168, 76, 0.15);
+
+  --font-display: var(--font-playfair);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-body: var(--font-libre-baskerville);
+}
+
+:root {
+  --bg-void: #0a0906;
+  --bg-surface: #111009;
+  --bg-card: #1a1710;
+  --accent-amber: #c9a84c;
+  --accent-rust: #8b3a2a;
+  --accent-sage: #3d5a47;
+  --text-primary: #e8e0cc;
+  --text-muted: #7a7060;
+  --border: #2a2520;
+  --glow: rgba(201, 168, 76, 0.15);
+
+  --radius: 0;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    cursor: none !important;
+  }
+  body {
+    @apply bg-[var(--bg-void)] text-[var(--text-primary)] font-body antialiased;
+    cursor: none !important;
+  }
+}
+
+.paper-texture {
+  background-color: var(--bg-card);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(201, 168, 76, 0.03) 0,
+    rgba(201, 168, 76, 0.03) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+}
+
+@keyframes scanline {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+.animate-scanline {
+  animation: scanline 2.5s linear infinite;
+}
+
+@keyframes node-pulse {
+  0% { filter: drop-shadow(0 0 0px var(--accent-sage)); }
+  50% { filter: drop-shadow(0 0 12px var(--accent-sage)); }
+  100% { filter: drop-shadow(0 0 0px var(--accent-sage)); }
+}
+.animate-node-pulse {
+  animation: node-pulse 3s ease-in-out infinite;
+}
+
+@keyframes edge-draw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+.animate-edge-draw {
+  stroke-dasharray: 1000;
+  animation: edge-draw 1.5s ease-out forwards;
+}
+
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 0 0 var(--glow); }
+  50% { box-shadow: 0 0 10px 2px var(--glow); }
+  100% { box-shadow: 0 0 0 0 var(--glow); }
+}
+.focus-glow-pulse:focus {
+  animation: glow-pulse 2s infinite;
+  outline: none;
+  border-color: var(--accent-amber);
+}
