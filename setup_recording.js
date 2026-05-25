@@ -48,6 +48,7 @@ const fs = require('fs');
   });
 
   const page = await context.newPage();
+  page.setDefaultTimeout(120000);
   
   try {
     console.log("Logging in as kanadb...");
@@ -65,8 +66,39 @@ const fs = require('fs');
     const fileInput = await page.$('input[type="file"]');
     await fileInput.setInputFiles('public/Quantum_AI_Research.pdf');
     
-    // Wait for upload/analysis to complete (wait for some text like "Analysis Complete" or just wait a bit)
-    await page.waitForTimeout(15000);
+    // Wait for upload/analysis to complete by waiting for the Concept Map to appear
+    console.log("Waiting for analysis to complete...");
+    await page.waitForFunction(() => {
+        const text = document.body.innerText;
+        return (text.includes('Concept Map') && !text.includes('Analysis in progress...')) || text.includes('Analysis failed');
+    }, { timeout: 120000 });
+    
+    await page.waitForTimeout(3000);
+    
+    console.log("Closing Session Summary modal...");
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(1000);
+    // Also try clicking the backdrop just in case Escape doesn't work
+    await page.mouse.click(10, 10);
+    await page.waitForTimeout(1000);
+    
+    console.log("Scrolling Concept Map...");
+    await page.mouse.wheel(0, 500);
+    await page.waitForTimeout(2000);
+
+    console.log("Clicking ELI5 Breakdown tab...");
+    const eli5Tab = await page.$('text="ELI5 Breakdown"');
+    if (eli5Tab) await eli5Tab.click({ force: true });
+    await page.waitForTimeout(5000); // wait for it to generate
+    await page.mouse.wheel(0, 800);
+    await page.waitForTimeout(2000);
+
+    console.log("Clicking Exam Simulator tab...");
+    const examTab = await page.$('text="Exam Simulator"');
+    if (examTab) await examTab.click({ force: true });
+    await page.waitForTimeout(5000);
+    await page.mouse.wheel(0, 500);
+    await page.waitForTimeout(3000);
     
     console.log("Scrolling results...");
     await page.mouse.wheel(0, 1000);

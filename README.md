@@ -7,9 +7,7 @@
 
   <br />
 
-  <video src="public/walkthrough.webm" width="100%" controls autoplay loop muted>
-    <a href="public/walkthrough.webm">Click here to watch the full PaperLens walkthrough</a>
-  </video>
+  <video src="https://raw.githubusercontent.com/Kanadb30/PaperLens/main/public/walkthrough.webm" width="100%" controls autoplay loop muted></video>
   *(Watch the full PaperLens walkthrough above!)*
 </div>
 
