@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, UploadCloud, Library, LogOut } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
@@ -25,7 +26,9 @@ export function Sidebar() {
 
   return (
     <div className="fixed left-0 top-0 h-screen w-16 bg-[var(--bg-card)] border-r border-[var(--border)] flex flex-col items-center py-8 z-50">
-      <div className="mb-12 font-display text-2xl text-[var(--accent-amber)] select-none">P</div>
+      <div className="mb-12 select-none flex justify-center w-full">
+        <Image src="/logo.png" alt="PaperLens Logo" width={36} height={36} className="rounded-full border border-[var(--border)] shadow-sm bg-[var(--bg-card)] p-1" />
+      </div>
       
       <div className="flex-1 flex flex-col space-y-6 w-full items-center">
         {navItems.map(item => {
@@ -50,7 +53,7 @@ export function Sidebar() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -10 }}
-                    className="absolute left-16 bg-[var(--bg-surface)] border border-[var(--border)] px-3 py-1 text-sm font-mono whitespace-nowrap"
+                    className="absolute left-16 bg-[var(--bg-surface)] border border-[var(--border)] rounded-full px-3 py-1 text-sm font-mono whitespace-nowrap"
                   >
                     {item.label}
                   </motion.div>
@@ -77,7 +80,7 @@ export function Sidebar() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -10 }}
-                className="absolute left-16 bg-[var(--bg-surface)] border border-[var(--border)] px-3 py-1 text-sm font-mono whitespace-nowrap"
+                className="absolute left-16 bg-[var(--bg-surface)] border border-[var(--border)] rounded-full px-3 py-1 text-sm font-mono whitespace-nowrap"
               >
                 Sign Out
               </motion.div>

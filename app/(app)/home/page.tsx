@@ -10,7 +10,7 @@ export default function HomePage() {
     <div className="flex flex-col min-h-full overflow-y-auto">
       <div className="p-12 max-w-6xl mx-auto w-full flex-1 flex flex-col items-center justify-center text-center">
         <div className="mb-8">
-          <Image src="/icon.png" alt="PaperLens Logo" width={120} height={120} className="mx-auto border border-[var(--border)] rounded-sm p-2 bg-[var(--bg-card)] shadow-lg" />
+          <Image src="/logo.png" alt="PaperLens Logo" width={120} height={120} className="mx-auto border border-[var(--border)] rounded-full p-2 bg-[var(--bg-card)] shadow-lg" />
         </div>
         
         <h1 className="text-4xl md:text-5xl font-display text-[var(--text-primary)] mb-6 border-b border-[var(--border)] pb-4 inline-block">

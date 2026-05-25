@@ -101,7 +101,7 @@ export function ChatInterface({ sessionId, initialHistory, base64Pdf }: ChatInte
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-[80%] p-4 border ${
+                className={`max-w-[80%] p-4 border rounded-[2rem] ${
                   msg.role === 'user' 
                     ? 'border-[var(--accent-rust)] border-l-4 bg-[var(--bg-surface)] text-[var(--text-primary)]' 
                     : 'border-[var(--accent-amber)] border-l-4 bg-[var(--bg-card)] paper-texture text-[var(--text-primary)]'
@@ -122,7 +122,7 @@ export function ChatInterface({ sessionId, initialHistory, base64Pdf }: ChatInte
           )}
           {showRetry && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
-              <div className="p-4 border border-[var(--border)] bg-[var(--bg-surface)] flex flex-col space-y-2">
+              <div className="p-4 border border-[var(--border)] rounded-3xl bg-[var(--bg-surface)] flex flex-col space-y-2">
                 <span className="text-sm text-[var(--text-muted)]">PaperLens couldn't answer from the paper. Try rephrasing.</span>
               </div>
             </motion.div>

@@ -55,7 +55,7 @@ export default function DashboardPage() {
                       <span className="text-xs font-mono text-[var(--text-muted)]">
                         {(session.fileSize / 1024 / 1024).toFixed(2)} MB
                       </span>
-                      <span className={`text-xs font-mono px-2 py-1 border ${session.status === 'ready' ? 'border-[var(--accent-sage)] text-[var(--accent-sage)]' : session.status === 'error' ? 'border-[var(--accent-rust)] text-[var(--accent-rust)]' : 'border-[var(--accent-amber)] text-[var(--accent-amber)]'}`}>
+                      <span className={`text-xs font-mono px-2 py-1 border rounded-full ${session.status === 'ready' ? 'border-[var(--accent-sage)] text-[var(--accent-sage)]' : session.status === 'error' ? 'border-[var(--accent-rust)] text-[var(--accent-rust)]' : 'border-[var(--accent-amber)] text-[var(--accent-amber)]'}`}>
                         {session.status.toUpperCase()}
                       </span>
                     </div>

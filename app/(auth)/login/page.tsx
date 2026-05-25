@@ -22,7 +22,7 @@ export default function LoginPage() {
 
   return (
     <main className="w-full h-full flex items-center justify-center p-8 min-h-screen">
-      <div className="max-w-md w-full bg-[var(--bg-card)] paper-texture border border-[var(--border)] p-12 flex flex-col items-center text-center shadow-2xl">
+      <div className="max-w-md w-full bg-[var(--bg-card)] rounded-[2.5rem] paper-texture border border-[var(--border)] p-12 flex flex-col items-center text-center shadow-2xl">
         <h2 className="text-4xl font-display text-[var(--accent-amber)] mb-4">Authenticate</h2>
         <p className="text-sm font-mono text-[var(--text-muted)] mb-8">Access your private library and analysis sessions.</p>
         <Button onClick={handleSignIn} disabled={isLoading} className="w-full" variant="outline">

@@ -125,7 +125,7 @@ export default function AnalysisResultPage() {
 
       <div className="flex-1 overflow-y-auto relative p-6">
         {activeTab === 'concept' && session.conceptMap && (
-          <div className="w-full h-full border border-[var(--border)] bg-[var(--bg-card)]">
+          <div className="w-full h-full border border-[var(--border)] rounded-[2rem] bg-[var(--bg-card)]">
             <ConceptGraph data={session.conceptMap} />
           </div>
         )}
@@ -143,14 +143,14 @@ export default function AnalysisResultPage() {
               <div key={i} className="border-l-2 border-[var(--accent-amber)] pl-6 py-2">
                 <h3 className="text-xl font-display mb-3">{section.section}</h3>
                 {section.isLoading ? (
-                  <div className="flex items-center space-x-4 p-4 border border-[var(--border)] bg-[var(--bg-surface)]">
+                  <div className="flex items-center space-x-4 p-4 border border-[var(--border)] rounded-[2rem] bg-[var(--bg-surface)]">
                     <LensFocusing className="w-6 h-6" />
                     <span className="font-mono text-[var(--text-muted)] animate-pulse">Synthesizing...</span>
                   </div>
                 ) : (
                   <>
                     <p className="text-[var(--text-primary)] mb-4 leading-relaxed">{section.simpleExplanation}</p>
-                    <div className="bg-[var(--bg-surface)] p-4 border border-[var(--border)] text-sm">
+                    <div className="bg-[var(--bg-surface)] p-4 border border-[var(--border)] rounded-3xl text-sm">
                       <span className="font-mono text-[var(--accent-sage)] mr-2">Analogy:</span>
                       <span className="text-[var(--text-muted)]">{section.analogy}</span>
                     </div>
@@ -177,7 +177,7 @@ export default function AnalysisResultPage() {
         )}
 
         {activeTab === 'chat' && (
-          <div className="w-full max-w-4xl mx-auto h-[calc(100vh-12rem)] border border-[var(--border)] bg-[var(--bg-void)]">
+          <div className="w-full max-w-4xl mx-auto h-[calc(100vh-12rem)] border border-[var(--border)] rounded-[2rem] bg-[var(--bg-void)]">
             {base64Pdf ? (
               <ChatInterface 
                 sessionId={sessionId} 
@@ -185,12 +185,12 @@ export default function AnalysisResultPage() {
                 base64Pdf={base64Pdf} 
               />
             ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center border border-[var(--border)] bg-[var(--bg-surface)]">
+              <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center border border-[var(--border)] rounded-[2rem] bg-[var(--bg-surface)]">
                 <p className="text-[var(--text-muted)] font-mono mb-4">
                   Original PDF is required for chat. Please re-upload the file to continue interrogating.
                 </p>
                 <div className="flex flex-col items-center space-y-4">
-                  <span className="text-sm border border-[var(--accent-rust)] text-[var(--accent-rust)] px-4 py-2">Missing Context Data</span>
+                  <span className="text-sm border border-[var(--accent-rust)] rounded-full text-[var(--accent-rust)] px-4 py-2">Missing Context Data</span>
                   <label className="cursor-pointer bg-[var(--accent-amber)] text-[var(--bg-void)] px-6 py-2 font-mono font-bold hover:bg-opacity-90 transition-colors">
                     Restore Context
                     <input 
