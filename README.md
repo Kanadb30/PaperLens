@@ -4,6 +4,11 @@
   # PaperLens
 
   *Illuminate the unseen architecture of your documents. AI Research Paper Companion.*
+
+  <br />
+
+  [![PaperLens Walkthrough](https://img.youtube.com/vi/YOUR_YOUTUBE_VIDEO_ID_HERE/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_YOUTUBE_VIDEO_ID_HERE)
+  *(Click above to watch the full PaperLens walkthrough)*
 </div>
 
 ---
