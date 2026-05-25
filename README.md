@@ -7,8 +7,10 @@
 
   <br />
 
-  [![PaperLens Walkthrough](https://img.youtube.com/vi/YOUR_YOUTUBE_VIDEO_ID_HERE/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_YOUTUBE_VIDEO_ID_HERE)
-  *(Click above to watch the full PaperLens walkthrough)*
+  <video src="public/walkthrough.webm" width="100%" controls autoplay loop muted>
+    <a href="public/walkthrough.webm">Click here to watch the full PaperLens walkthrough</a>
+  </video>
+  *(Watch the full PaperLens walkthrough above!)*
 </div>
 
 ---
