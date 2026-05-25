@@ -1,36 +1,39 @@
 import * as admin from 'firebase-admin';
-import * as fs from 'fs';
-import * as path from 'path';
 
-if (!admin.apps.length) {
+function initializeFirebaseAdmin() {
+  if (admin.apps.length > 0) {
+    return admin.apps[0];
+  }
+
   try {
     let serviceAccountStr = process.env.FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON;
-    
-    if (!serviceAccountStr || !serviceAccountStr.trim().endsWith('}')) {
-      const envPath = path.resolve(process.cwd(), '.env.local');
-      if (fs.existsSync(envPath)) {
-        const envContent = fs.readFileSync(envPath, 'utf8');
-        const match = envContent.match(/FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON=({[\s\S]*?})/);
-        if (match) {
-          serviceAccountStr = match[1];
-        }
-      }
+
+    if (!serviceAccountStr) {
+      // Fallback for local development if env var is missing
+      console.warn('FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON is missing. Using application default credentials.');
+      admin.initializeApp();
+      return admin.apps[0];
     }
 
-    if (serviceAccountStr) {
-      const serviceAccount = JSON.parse(serviceAccountStr);
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-      });
-    } else {
+    // Try to parse the service account
+    const serviceAccount = JSON.parse(serviceAccountStr);
+    
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
+
+    return admin.apps[0];
+  } catch (error) {
+    console.error('Firebase admin initialization failed:', error);
+    // Initialize without credentials as a last resort
+    if (!admin.apps.length) {
       admin.initializeApp();
     }
-  } catch (error) {
-    console.error('Firebase admin initialization error', error);
-    try { if (!admin.apps.length) admin.initializeApp(); } catch(e){}
+    return admin.apps[0];
   }
 }
 
+const app = initializeFirebaseAdmin();
 const adminDb = admin.firestore();
 const adminAuth = admin.auth();
 
