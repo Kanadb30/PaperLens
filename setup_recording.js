@@ -9,11 +9,25 @@ dotenv.config({ path: '.env.local' });
 // 1. Generate PDF
 const doc = new PDFDocument();
 doc.pipe(fs.createWriteStream('public/Quantum_AI_Research.pdf'));
-doc.fontSize(24).text('The Future of Quantum Artificial Intelligence', { align: 'center' });
+doc.fontSize(20).text('The Future of Quantum Artificial Intelligence', { align: 'center' });
 doc.moveDown();
-doc.fontSize(12).text('Abstract: This paper explores the intersection of quantum computing and neural networks. Quantum AI promises exponential speedups for complex optimization problems and machine learning training phases. By leveraging quantum superposition and entanglement, deep learning models can potentially evaluate multiple states simultaneously, drastically reducing the time required to process large datasets.', { align: 'justify' });
+doc.fontSize(14).text('Abstract', { underline: true });
+doc.fontSize(10).text('Quantum AI promises speedups for complex problems. By using quantum states, models can evaluate multiple states simultaneously.', { align: 'justify' });
 doc.moveDown();
-doc.text('1. Introduction: Traditional computing architectures are reaching their physical limits. Quantum algorithms, such as Grover\'s and Shor\'s, have already demonstrated theoretical superiority. When applied to AI, parameterized quantum circuits (PQCs) can serve as trainable models akin to classical neural networks.');
+doc.fontSize(14).text('1. Introduction', { underline: true });
+doc.fontSize(10).text('Traditional computing architectures are reaching physical limits. Parameterized quantum circuits (PQCs) can serve as trainable models.');
+doc.moveDown();
+doc.fontSize(14).text('2. Methodology', { underline: true });
+doc.fontSize(10).text('We implemented a 4-qubit quantum neural network using Qiskit. The model was trained using the VQE (Variational Quantum Eigensolver) approach.');
+doc.moveDown();
+doc.fontSize(14).text('3. Results', { underline: true });
+doc.fontSize(10).text('The quantum model converged in 15 epochs, compared to 50 epochs for the classical counterpart, demonstrating exponential efficiency.');
+doc.moveDown();
+doc.fontSize(14).text('4. Discussion', { underline: true });
+doc.fontSize(10).text('While simulated results are promising, hardware noise remains a challenge. Error mitigation strategies are strictly necessary.');
+doc.moveDown();
+doc.fontSize(14).text('5. Conclusion', { underline: true });
+doc.fontSize(10).text('Quantum AI is not just a theoretical concept; it provides tangible advantages for parameter optimization in neural networks.');
 doc.end();
 
 // 2. Generate Custom Token
